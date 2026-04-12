@@ -158,7 +158,9 @@ Basic manual testing performed:
 * Document versioning
 
 ---
-
-## 📎 Notes
-
-This system focuses on clean architecture, scalability, and separation of concerns rather than UI design.
+##☁️ AWS Deployment Strategy
+* Choice of Services For a production-ready version of this module, the following AWS services are recommended:Frontend: AWS Amplify or S3 + CloudFront for hosting the Next.js static export (or App Runner if using SSR).
+* Backend API: AWS App Runner or Elastic Beanstalk. These provide scalable, managed environments for containerized Laravel applications.
+* Database: Amazon RDS (PostgreSQL) for managed backups, multi-AZ high availability, and encryption at rest.File Storage: Amazon S3 to store versioned document uploads securely.
+* Secure Environment Management Environment variables will never be stored in the repository.AWS Secrets Manager: Used to store sensitive data like database credentials and API keys.Parameter Store (SSM): Used for non-sensitive configuration data.Runtime Injection: The CI/CD pipeline or the App Runner service will inject these variables into the container environment at runtime.
+* CI/CD Pipeline Structure The workflow is divided into two stages to support a professional Git workflow:Staging (Development Branch):Triggered on push to development.Runs PHPUnit tests, Pest, and Vitest/Cypress. Automatically deploys to a staging environment (e.g., api-staging.example.com).Production (Main Branch):Triggered via a Pull Request from development to main.Requires a manual approval gate in GitHub Actions.Executes database migrations using a pre-deployment hook and triggers a rolling update to the production environment to ensure zero downtime.
