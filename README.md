@@ -158,7 +158,7 @@ Basic manual testing performed:
 * Document versioning
 
 ---
-##☁️ AWS Deployment Strategy
+## ☁️ AWS Deployment Strategy
 * Choice of Services For a production-ready version of this module, the following AWS services are recommended:Frontend: AWS Amplify or S3 + CloudFront for hosting the Next.js static export (or App Runner if using SSR).
 * Backend API: AWS App Runner or Elastic Beanstalk. These provide scalable, managed environments for containerized Laravel applications.
 * Database: Amazon RDS (PostgreSQL) for managed backups, multi-AZ high availability, and encryption at rest.File Storage: Amazon S3 to store versioned document uploads securely.
